@@ -5,35 +5,29 @@ import java.util.Scanner;
 public class FoodTruckApp {
 
 	Scanner kb = new Scanner(System.in);
-	FoodTruck[] fTarr = new FoodTruck[2]; // only 5 food truck objects
+	FoodTruck[] fTarr = new FoodTruck[2]; // TEST--- changeback!! -- only 5 food truck objects
 
 	public static void main(String[] args) {
 		FoodTruckApp fta = new FoodTruckApp();
 		fta.run();
 	} // end of main
-
-	// run() think of it as main -- write your logic
-	public void run() {
+	
+	public void run() {       // run() think of it as main -- write your logic
+		boolean keepGoing = true; // to allow user to quit
+		// Start by making and populating the FoodTruck objects in the fTarr 
 		makeTrucks();
-		printMenuOptions(fTarr);
-
-//		 TEST: print out the Food Trucks
-//		for (int i = 0; i < fTarr.length; i++) {
-////	fTarr[i].displayFoodTruck();
-//	System.out.println(fTarr[i]);
-//}
 		// Menu including list all, avg rating, highest rating, quit program
-//		do {
-//			printMenu(fTarr);
-//		} while (keepGoing);
-//		
-//		
-//		}
+		do {
+			keepGoing = printMenuOptions(fTarr, keepGoing);
+		} while (keepGoing);
+
+		// TEST -------- TEST
+		System.out.println("DID WE MAKE IT TO AFTER PRINT MENU OPTIONS?");
+		
 		kb.close();
-	} // end of run
+	} // end of run() method
 
 	public void makeTrucks() {
-		boolean keepGoing = true;
 
 		// Prompt User to input the name, food type, and rating for up to five food
 		// trucks
@@ -68,36 +62,59 @@ public class FoodTruckApp {
 			// NUMID is assigned automatically from the constructor
 			fTarr[i] = fT;
 		} // end of For Loop of user input
-	}
+	} // end of makeTrucks() method
 
-	public void printMenuOptions(FoodTruck[] fTarr) {
+	public boolean printMenuOptions(FoodTruck[] fTarr, Boolean keepGoing) {
 		int uChoice;
-		System.out.println("----------------------------------");
-		System.out.println("..................................");
-		System.out.println(".....Please Select a Option:......");
+		double avg, ratingSum = 0.0, ratingMax = 0.0;
+		String hiRatedFT = "";
+		System.out.println("\n----------------------------------");
+		System.out.println("     Please Select a Option:      \n");
 		System.out.println(" 1 = List All Existing Food Trucks");
 		System.out.println(" 2 = Average Rating of Food Trucks");
 		System.out.println(" 3 = Highest-Rated Food Truck!!!!!");
-		System.out.println("...............Or.................");
-		System.out.println(" 9 = Quit...If so, Thank You & Bye");
-		System.out.println("..................................");
-		System.out.println("----------------------------------");
+		System.out.println("   Or                             ");
+		System.out.println(" 9 = Quit                         ");
+		System.out.println();
+		System.out.println("----------------------------------\n");
 		uChoice = kb.nextInt();
-
+		// action of choices
 		switch (uChoice) {
 		case 1:
+			System.out.println("All Existing Food Trucks: \n");
 			// iterate thru the FoodTruck array and print them out
-			for (int i = 0; i < fTarr.length; i++) {
+			for (int i = 0; i < fTarr.length; i++) {				
 				System.out.println(fTarr[i]);
+				System.out.println();
 			}
 			break;
 		case 2:
-			
-
-		default:
+			// avg rating of food trucks
+			for (int i = 0; i < fTarr.length; i++) {
+				ratingSum += fTarr[i].getNumRating();
+			}
+			avg = ratingSum / fTarr.length;
+			System.out.println("The Average Rating was: " + avg+ "\n");
 			break;
-		}
-
-	}
+		case 3:
+			// display the highest rated food truck
+			for (int i = 0; i < fTarr.length; i++) {
+				if (fTarr[i].getNumRating() > ratingSum) {
+					ratingMax = fTarr[i].getNumRating();
+					hiRatedFT = fTarr[i].getTruckName();
+				}
+			}
+			System.out.println("The Highest-Rated Food Truck was: " + hiRatedFT + " with: " + ratingMax + "\n");
+			break;	
+		case 9:
+			System.out.println("You Choose to Quit. Thank you and have a nice day!\n");
+			keepGoing = false;
+			break;
+		default:
+			System.out.println("Seems we made an invalid entry...\n");
+			break;
+		} // end of switch st
+		return keepGoing;
+	} // end of printMenuOptions() method
 
 } // end of class
