@@ -10,33 +10,35 @@ public class FoodTruck {
 	private String truckName;
 	private String foodType;
 	private double numRating; // scale from 1.0 (worst) to 10.0 (best)
-	private static int NUMID = 2100; // each food truck will have a unique numeric Id
-
+	private static int nextID = 2101; // each food truck will have a unique numeric Id
+	private int truckID = nextID;
+	
 	// no-arg constructor
-	public FoodTruck() {
-		
+	public FoodTruck() {		
+		nextID = truckID;
+		nextID++;
 	}
 	
-	// Constructor does not allow numId to be instantiated by the creation of an
+	// Constructor does not allow nextID to be instantiated by the creation of an
 	// object of this class
-	public FoodTruck(String truckName, String foodType, double numRating, int NUMID) {
-		this.truckName = truckName;
-		this.foodType = foodType;
-		this.numRating = numRating;
-		FoodTruck.NUMID = NUMID++;
-	}
+//	public FoodTruck(String truckName, String foodType, double numRating, int nextID) {
+//		this();
+////		super();
+//		this.truckName = truckName;
+//		this.foodType = foodType;
+//		this.numRating = numRating;
+////		FoodTruck.nextID = nextID++;		
+//	}
 	
+	// Getters and Setters -- not always needed
 
-	
-	
-
-	public static int getNUMID() {
-		return NUMID;
-	}
-
-	public static void setNUMID(int nUMID) {
-		NUMID = nUMID;
-	}
+//	public static int getnextID() {
+//		return nextID;
+//	}
+//
+//	public static void setnextID(int nextID) {
+//		nextID = nextID;
+//	}
 
 	public double getNumRating() {
 		return numRating;
@@ -63,14 +65,14 @@ public class FoodTruck {
 	}
 
 	public String toString() {
-		String output = "truckName=" + truckName + ", foodType=" + foodType + ", numRating=" + numRating + ", NUMID="
-				+ NUMID;
+		String output = "truckName=" + truckName + ", foodType=" + foodType + ", numRating=" + numRating + ", truckID="
+				+ truckID;
 		return output;
 	}
-
-	public void displayFoodTruck() {
-		String fTData = this.toString();
-		System.out.println(fTData);
-	}
+//
+//	public void displayFoodTruck() {
+//		String fTData = this.toString();
+//		System.out.println(fTData);
+//	}
 
 }
