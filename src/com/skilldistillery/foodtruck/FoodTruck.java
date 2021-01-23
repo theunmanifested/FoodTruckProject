@@ -11,34 +11,20 @@ public class FoodTruck {
 	private String foodType;
 	private double numRating; // scale from 1.0 (worst) to 10.0 (best)
 	private static int nextID = 2101; // each food truck will have a unique numeric Id
-	private int truckID = nextID;
+	private int truckID;
 	
 	// no-arg constructor
 	public FoodTruck() {		
-		nextID = truckID;
+		truckID = nextID;
 		nextID++;
-	}
-	
-	// Constructor does not allow nextID to be instantiated by the creation of an
-	// object of this class
-//	public FoodTruck(String truckName, String foodType, double numRating, int nextID) {
-//		this();
-////		super();
-//		this.truckName = truckName;
-//		this.foodType = foodType;
-//		this.numRating = numRating;
-////		FoodTruck.nextID = nextID++;		
-//	}
+	}	
 	
 	// Getters and Setters -- not always needed
 
-//	public static int getnextID() {
-//		return nextID;
-//	}
-//
-//	public static void setnextID(int nextID) {
-//		nextID = nextID;
-//	}
+	public static int getnextID() {
+		return nextID;
+	}
+
 
 	public double getNumRating() {
 		return numRating;
