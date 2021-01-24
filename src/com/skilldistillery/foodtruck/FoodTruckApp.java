@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class FoodTruckApp {
 
 	Scanner kb = new Scanner(System.in);
-	FoodTruck[] fTarr = new FoodTruck[2]; // TEST--- changeback!! -- only 5 food truck objects
+	FoodTruck[] fTarr = new FoodTruck[5]; // TEST--- changeback!! -- only 5 food truck objects
 
 	public static void main(String[] args) {
 		FoodTruckApp fta = new FoodTruckApp();
@@ -16,13 +16,10 @@ public class FoodTruckApp {
 		boolean keepGoing = true; // to allow user to quit
 		// Start by making and populating the FoodTruck objects in the fTarr 
 		makeTrucks();
-		// Menu including list all, avg rating, highest rating, quit program
+		// Menu including list all, avg rating, highest rating, quit program (keepGoing to false)
 		do {
 			keepGoing = printMenuOptions(fTarr, keepGoing);
 		} while (keepGoing);
-
-		// TEST -------- TEST
-		System.out.println("DID WE MAKE IT TO AFTER PRINT MENU OPTIONS?");
 		
 		kb.close();
 	} // end of run() method
@@ -67,7 +64,7 @@ public class FoodTruckApp {
 	public boolean printMenuOptions(FoodTruck[] fTarr, Boolean keepGoing) {
 		int uChoice;
 		double avg, ratingSum = 0.0, ratingMax = 0.0;
-		String hiRatedFT = "";
+		String hiRatedFT = "", hiFoodType = "";
 		System.out.println("\n----------------------------------");
 		System.out.println("     Please Select a Option:      \n");
 		System.out.println(" 1 = List All Existing Food Trucks");
@@ -94,7 +91,7 @@ public class FoodTruckApp {
 				ratingSum += fTarr[i].getNumRating();
 			}
 			avg = ratingSum / fTarr.length;
-			System.out.println("The Average Rating was: " + avg+ "\n");
+			System.out.println("\nThe Average Rating was: " + avg+ "\n");
 			break;
 		case 3:
 			// display the highest rated food truck
@@ -102,16 +99,17 @@ public class FoodTruckApp {
 				if (fTarr[i].getNumRating() > ratingSum) {
 					ratingMax = fTarr[i].getNumRating();
 					hiRatedFT = fTarr[i].getTruckName();
+					hiFoodType = fTarr[i].getFoodType();
 				}
 			}
-			System.out.println("The Highest-Rated Food Truck was: " + hiRatedFT + " with: " + ratingMax + "\n");
+			System.out.println("\nThe Winner is: " + hiRatedFT + " with: " + ratingMax + ", which has a food type of " + hiFoodType + ".\n");
 			break;	
 		case 9:
-			System.out.println("You Choose to Quit. Thank you and have a nice day!\n");
+			System.out.println("\nYou Choose to Quit. Thank you and have a nice day!\n");
 			keepGoing = false;
 			break;
 		default:
-			System.out.println("Seems we made an invalid entry...\n");
+			System.out.println("\nOops! Seems we made an invalid entry...\n");
 			break;
 		} // end of switch st
 		return keepGoing;
