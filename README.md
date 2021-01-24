@@ -16,17 +16,17 @@ Dependent on the number of food trucks reviewed (with a hard limit of five food 
 3. Highest-Rated Food Truck (Winner) - Details of Food Truck
 
 ### Topics and Technologies Used
-* Object-Orientated Programming ( Four Foundations )
-  1. Abstraction
-  2. Polymorphism
-  3. Inheritance
-  4. Encapsulation
+- Object-Orientated Programming ( Four Foundations )
+  - Abstraction
+  - Polymorphism
+  - Inheritance
+  - Encapsulation
 
-* Access Modifiers (straight from our course material)
-  1. **public**: Methods of any class anywhere have Access
-  2. **protected**: Methods of subclasses and of any class in the same package have access
-  3. **(default)**: Methods of classes in the same package (directory) have access
-  4. **private**: Only methods defined in the same class have access
+- Access Modifiers (straight from our course material)
+  - **public**: Methods of any class anywhere have Access
+  - **protected**: Methods of subclasses and of any class in the same package have access
+  - **(default)**: Methods of classes in the same package (directory) have access
+  - **private**: Only methods defined in the same class have access
 
 ### How to Run
 FoodTruckApp.java contains main. Run with no arguments. Make sure FoodTruck.java is in the same Java package.
